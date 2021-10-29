@@ -1,0 +1,168 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf200
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww16560\viewh11540\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 Hubel & Weisel 62/63\
+Roger Sperry 55?\
+Guckenheimer 81 - Codim2 Bifurcations\
+Killian & Cadieu 2010\
+\
+\
+IMAGE SEG THIS TODO:\
+\
+(X). Send Hillar the 30x20 Gradient Box image as a template for testing algorithm. 
+\b [Done]
+\b0                           \
+(X). Why does Full MaxEnt Null Model have large scaling difference in row sums (degrees) from Adjacency Matrix (fishy)? 
+\b [MaxEnt Algorithm was not converging)]
+\b0 \
+(X). Why does our topographic (Bij) model have dips in degree sequence that don't match dips in Adjacency Matrix (fishy)? 
+\b [fixed. mix up in ximv, yimg]
+\b0 \
+(X). Look at first eigenvector of Sparse MaxEnt Modularity.  Is it working? 
+\b [Everything looks good.  Generated Evecs for 4 modularity cases and Neg Lap.]
+\b0 \
+\
+(4). Fix the Power Method Code.  It seems to be finding smallest eigenvector in some cases.  Does not match Eig function.\
+(5). Fix Normalization for Normalized Graph Laplacian and Normalized Average Association models.\
+\
+(X). Run Newman&Girvan Vanilla (didj) Null Model for Image Seg Modularity and show it fails. 
+\b [ Done.  It looks identical to the non topographical MaxEnt case]
+\b0 \
+(7). Look at distributions of Bij's (like we did do's) for different Null Models and Adjacency Matrix with nearest neighbor constraint.\
+(8). Look at Bij distribution or falloff in unconstrained (to be nearest neighbor) Adjacency Matrix.\
+\
+(9). Add more than nearest neighbor connections.  Smooth falloff with hard cutoff at some r.  Like in Ncut.  Read Ncut.\
+\
+\
+\
+
+\b -- (Mon 5/20)
+\b0 \
+Try a maxent where we only constrain both row sums and diagonal means\
+More eigenvectors of topo N&G.\
+Zoom in on diagonal sums of topo & weights matrix.\
+Remake those null model images with better color bars.\
+Read NCut and know exactly what they did.  \
+
+\b -- (Tues 5/21)
+\b0 \
+Compute Null MOdel with only Hardware Constraint Matrices for TopoME & TopoN&G\
+INstead of Bij, index into weights matrix and average.  Only distance.  Then distance and orientation.   
+\b [Done]
+\b0 \
+Check MaxEnt Conversion for more iterations to see if it matches row sums better\'85  
+\b [Fixed.  Needed more iterations]\
+-- (Wed 5/22)
+\b0 \
+Compute Gradient Box Segmentation with Topo N&G NM Modularity using Distance Masks 
+\b [Done]
+\b0 \
+Reproduce BSDS 500 images segmentations using mean E-vec pixel value as threshold. 
+\b [Done]
+\b0 \
+Plot Log of DEV instead of DEV in Segmentation figure (2x2 one) 
+\b [Done]
+\b0 \
+Plot segmentation in 2 subplots using segments as masks and actually plotting pixels contained in segments. 
+\b [Done]
+\b0 \
+Compare different Null Models by plotting different null models and diff NM's - Weights matrix for say gradient box (already done pretty much)\
+Compare different null models by looking at histogram of weight values in weights matrix & different null models.\
+\
+Segment smaller patches randomly chosen from images instead to downsampling the whole image. 
+\b [DOne]
+\b0 \
+Get Normalized Laplacian and Normalized Avg Association working. 
+\b [Done. Actually was working.  Just not with Power Method because didn't iterate enough.]\
+Pick threshold by line search of value that gives us best value of Modularity (ShiMalik! Really, Read it!)\
+\
+-- (Thurs 5/23)\
+
+\b0 Come up with performance metric. Precision-Recall?  Shi/Malik?  Our Information Measure? Benchmarks.  Look into.\
+Threshold Line search thing.  Implement it.
+\b \
+\
+--(Fri 5/24)\
+
+\b0 Fix Bij Mask bug and make it work or understand why it doesn't !!  
+\b [I was only looking at vertical PIV distance dependence.  Look at more general and it doesn't work as well on Kyoto.  More robust Evector on Gradient box.  Should work better in general.  Was a lucky (unlucky) coincidence it worked on Kyoto because of object orientation]
+\b0 \
+Look at more than nearest neighbor.  Try smooth fall off.  And hard cut at max radius. (2 params rmax & sigdist)\
+Look at results for hand full (~5 or 10) images (patches out of BSDS?) that are easy to segment.\
+\
+
+\b --(Sat 5/25)
+\b0 \
+(1).  Threshold Line search thing.  Implement it. 
+\b [Done.  Not sure the modularity measure makes sense.  We are using N&G's vanilla version to measure the scalar quality measure.]
+\b0 \
+(2).  Look at more than nearest neighbor.  Try smooth fall off.  And hard cut at max radius. (2 params rmax & sigdist) 
+\b [Workin better].
+\b0 \
+(3).  Look at results for hand full (~5 or 10) images (patches out of BSDS?) that are easy to segment. \
+(4).  Clean up mask NM code to choose 1 of 5 options at a time. 
+\b [Done.  Got rid of Vertical and Horiz only.  Have only Diag means, Euclidian Dist masks & DistOrientation masks.]\
+
+\b0 ----
+\b \
+
+\b0 Jungle of parameters.  SigPix.  SigDist.  Rmax.  Need to automate and run through to see benchmark results !!!  
+\b \
+\
+evaluation_reg_image.m in benchmark\
+match_segmentations.m\
+match_segmentations2.m\
+plot_eval.m\
+regionBench.m
+\b0 \
+\
+
+\b --(Mon 5/27)
+\b0 \
+(1).  Get BSDS Benchmark code working - Get output format right.  Also, plug in our info measure at the same time. 
+\b [Almost Done]
+\b0 \
+(2).  Take patches in BSDS images (make sure they contain 2 different segments by looking at truth) and calc benchmark numbers.  Make sure they look reasonable by eye.  Run BSDS for patches and for down sampled BSDS images.    \
+(3).  Use ln( z + sqrt(a+z^2) ) for log evector function visualization instead of real(log(x)).  For a small, you are more sensitive to values near zero. 
+\b [Done]
+\b0 \
+(4).  Eventually we need to line search thresholds for Graph Laplacian using min cut and not max modularity.\
+\
+
+\b --(Mon 6/3) -- Post-NIPS.\
+
+\b0 (1).  When I get back to project in 10 days (after Jim's DS project), look back at what we did early in the project because Fritz is suggesting we do some of the same stuff now.  How did it work?  Why did we go away from it?  Should we reimplement them?   Quality of segmentation measures.\
+	Max information measure for different thresholds.\
+	ROC type curve and area underneath it.\
+	Number of threshold values that pass some Info measure threshold.\
+\
+(2). Also, we use I = Is - Ie which is mutual information:  I = I(S) - I(S).  We could equivalently use I = I(GT) - I(GT | S).  Is better maybe.\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \ul \ulc0 Different Image Segmentation Methods\ulnone \
+N&G nontopographical vanilla heuristic null model Modularity\
+MaxEnt Full (nontopo) null model Modularity\
+SKH heuristic topographical null model Modularity\
+	Diag PIV Means\
+	Euclidian Distance Masks PIV  Means\
+	Distance & Direction Masks PIV Means\
+MaxEnt Topo null model Modularity\
+	Diag PIV Means\
+	Euclidian Distance PIV  Means (?)\
+	Vertical Distance PIV Means (?)\
+	Horizontal Distance PIV Means (?)\
+	Horiz&Vert Distance PIV Means Separately (?)\
+Graph Laplacian (Normalized)\
+Average Association (Normalized)}
