@@ -57,6 +57,13 @@ The paper associated with this work, entitled "A Model for Image Segmentation in
 
 (3).	**visualize_single_imgPtch_compare_all_methods_optimized_KurNEig.m** - These functions loop through various directories and grab the corresponding results files (some png, some txt) and will display the images and plot the data.  It will output ~500 jpg image  files that one can flip through to compare performance of different methods with optimized parameters and compare them. 
 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+That isn't everything about the project, but it's a good place to start. And it should give you a sense for coding ability and progression as well.
+
+Thank you for looking.
+
+Chris Warner
 
 <!---
 
