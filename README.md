@@ -11,8 +11,6 @@ The paper associated with this work, entitled "A Model for Image Segmentation in
 
 ## Some useful functions to start in and some helpful hints:
 
-	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
 (1).	**edit_all_imageSeg.m** - a function that opens relevant m files in matlab editor.	
 
 (2).	**edit_all_Kuramoto.m** - a function that opens relevant m files in matlab editor. 
@@ -63,6 +61,11 @@ The paper associated with this work, entitled "A Model for Image Segmentation in
 (3).	**visualize_single_imgPtch_compare_all_methods_optimized_KurNEig.m** - These functions loop through various directories and grab the corresponding results files (some png, some txt) and will display the images and plot the data.  It will output ~500 jpg image  files that one can flip through to compare performance of different methods with optimized parameters and compare them. 
 
 
+<!---
+
+		COMMENTING OUT THESE LINES I THINK.
+
+
 	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 evaluation_bdry_imageB.m
@@ -89,3 +92,6 @@ bench_blur_bsds500.m
 
 NOT:
 	main_ImageSeg.m, calc_weights.m, compute_Laplacian.m, compute_Modularity.m, compute_AvgAssociation.m
+
+
+-->
