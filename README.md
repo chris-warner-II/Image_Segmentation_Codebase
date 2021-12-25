@@ -1,4 +1,4 @@
-Greetings. Here is an early sample of code from the first of my two Ph.D projects. Most of this project was done in Matlab with some bash scripting to interface with a computer cluster using sbatch. It is not the cleanest repo because this is a project that I worked on without collaboration and it was an exploratory project that developed organically. The second project I worked on in my Ph.D thesis - done later, in Python, and with collaboration - is a better example of code. The purpose of this repo is to provide a sample of my coding capabilities - not a working project that can be picked up by others without significant effort. 
+Greetings. Here is an early sample of code from the first of my two Ph.D projects. Most of this project was done in Matlab with some bash scripting to interface with a computer cluster using sbatch. It is not the cleanest repo because this is a project that I worked on without collaboration and it was an exploratory project that developed organically. The second project I worked on in my Ph.D thesis in the Cell_Assembly_Codebase - done later, in Python, and with collaboration - is a better example of code. The purpose of this repo is to provide a sample of my coding capabilities - not a working project that can be picked up by others without significant effort. 
 
 The paper associated with this work, entitled "A Model for Image Segmentation in Retina" can be found here: https://arxiv.org/abs/2005.02567
 
@@ -12,23 +12,58 @@ The goal of this project was to build a computational model as a proof of concep
 
 Some useful functions to start in and some helpful hints:
 
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+(1).	edit_all_imageSeg.m - a function that opens relevant m files in matlab editor.	
+
+(2).	edit_all_Kuramoto.m - a function that opens relevant m files in matlab editor. 
+
+(2). 	addProjPaths.m - adds the relevant paths to matlab path. Must run this first.
+
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
 (1). 	write_sbatch_loop_ImageSeg.m - Performs a parallelized grid search across model hyperparameters on 'Cortex' cluster running sbatch. Input is lists of hyperparameters. Writes two file types to scripts4cluster directory. First type is a bunch of sbatch script text files that can be called from the command line. Each calls the function Loop_ImgSegMethodsD.m with a different set of hyperparameter values. The second file type calls each of those files, launching a set of jobs to the cluster.
 
 (2).	Loop_ImgSegMethodsD.m - Function that takes input that is hyperparameter set from the command line and translates them into inputs for and calls SegmentMethod.m function.
 
 (3).	SegmentMethod.m - This is where the bulk of the calculation happens. Loops over image patches in the corpus and for each, calculates edge weights in network based on the input value for 'method' flags and some of the following functions (calc_weightsB.m, compute_LaplacianB.m, compute_ModularityB.m, compute_AvgAssociationB.m). Given the edge weights in matrix, it will compute eigenvectors and perform the kuramoto coupled oscillator phase relaxation simulation by running main_Kuramoto.m.
 
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(1).	write_sbatch_loop_pb_png_4benchmark.m
 
-(4).	write_sbatch_loop_bench_bsds500.m - similar to other functions beginning write_sbatch_loop_<etc>, 
+(2). 	construct_pb_png_4benchmark.m
 
-this function allows us to perform grid search across hyperparameters in parallel across multiple cluster machines by writing sbatch text files and a corresponding run file to call those files in order, submitting them to the queue. Here we compare boundaries found by humans to boundaries found by the algorithm by using bench_bsds500.m
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+(1).	write_sbatch_loop_bench_bsds500.m - similar to other functions beginning write_sbatch_loop_<etc>, this function allows us to perform grid search across hyperparameters in parallel across multiple cluster machines by writing sbatch text files and a corresponding run file to call those files in order, submitting them to the queue. Here we compare boundaries found by humans to boundaries found by the algorithm by using bench_bsds500.m
 
 
-(5).	bench_bsds500.m - for an input set of hyperparameters, compares probabilistic boundaries derived from spatial gradients in kuramoto phase distribution or reshaped eigenvector to boundaries drawn by humans segmenting BSDS images. Runs boundaryBench.m function in the code repository provided with BSDS, here: (https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/bsds/)
+(2).	bench_bsds500.m - for an input set of hyperparameters, compares probabilistic boundaries derived from spatial gradients in kuramoto phase distribution or reshaped eigenvector to boundaries drawn by humans segmenting BSDS images. Runs boundaryBench.m function in the code repository provided with BSDS, here: (https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/bsds/)
 
 
+
+
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+(1).	plot_eval_compare_bsdsBench_EigB.m
+(2).	plot_eval_compare_bsdsBench_blurB.m
+(3).	plot_eval_compare_bsdsBench_KurB.m - These functions run over Precision/Recall/F-measure metrics for all image patches for the various hyperparameter values, collect up various statistics into multidimensional arrays so they can be compared, analyzed, plotted and saved.
+
+
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+(1).	visualize_single_imgPtch_compare_all_methods_optimized_Kur.m
+(2).	visualize_single_imgPtch_compare_all_methods_optimized_Eig.m
+(3).	visualize_single_imgPtch_compare_all_methods_optimized_KurNEig.m - These functions loop through various directories and grab the corresponding results files (some png, some txt) and will display the images and plot the data.  It will output ~500 jpg image  files that one can flip through to compare performance of different methods with optimized parameters and compare them. 
+
+
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+evaluation_bdry_imageB.m
+
+
+correspond_pixelsB.m
 
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -40,14 +75,12 @@ write_sbatch_loop_ bench_blur_bsds500.m
 bench_blur_bsds500.m
 
 
+
+
+
+
+
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
-	
-
-(3). addProjPaths.m is important to add the relevant paths to matlab. Run this first.
-
-
-
 
 NOT:
 	main_ImageSeg.m, calc_weights.m, compute_Laplacian.m, compute_Modularity.m, compute_AvgAssociation.m
