@@ -5,9 +5,6 @@ The paper associated with this work, entitled "A Model for Image Segmentation in
 The goal of this project was to build a computational model as a proof of concept for visual grouping of information in retina by synchrony of firing in retinal ganglion cells (RGCs). The hypothesis being: A functional connectivity network is constructed on the fly, influenced by image contrast values within local receptive fields of RGCs, and electrical interactions within that network influence fine-timing of firing in RGCs without adjusting their spike rate. We model the fine-time change in cell firing relative to an underlying Gamma band oscillation by phase and mediate phase-phase interactions in the Kuramoto coupled oscillator model. With the phase relaxation, regions in the image with similar pixel contrast values attract each other in phase and fall into synchrony while regions across which contrast statistics differ, will repel in phase and desynchronize. The phase, when visualized, generally smooths out texture within objects and yet maintains crisp lines at boundaries between objects - resulting in a grouping in phase and what looks like a 'cartoonization' of the image. The phase representation can then be multiplexed into retinal spike train without effecting spike rates and a perceptual grouping of image locations or a coarse image segmentation results from this fast computation embedded in the circuitry and activity in retina. In this project, we compute probabilistic object boundaries based on spatial gradients in the phase distribution after Kuramoto relaxation and compare them to human segmentations provided in the Berkeley Segmentation Dataset (BSDS). We show quantitatively, using a precision - recall paradigm, that phase discontinuities across the 2D lattice of oscillators overlap with human drawn boundaries. We explore different ways of constructing phase interaction networks and show that Topographic Modularity performs best.  
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
 
 
 Some useful functions to start in and some helpful hints:
@@ -46,8 +43,8 @@ Some useful functions to start in and some helpful hints:
 
 	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-(1).	plot_eval_compare_bsdsBench_EigB.m
-(2).	plot_eval_compare_bsdsBench_blurB.m
+(1).	plot_eval_compare_bsdsBench_EigB.m \\
+(2).	plot_eval_compare_bsdsBench_blurB.m \\
 (3).	plot_eval_compare_bsdsBench_KurB.m - These functions run over Precision/Recall/F-measure metrics for all image patches for the various hyperparameter values, collect up various statistics into multidimensional arrays so they can be compared, analyzed, plotted and saved.
 
 
@@ -66,7 +63,7 @@ evaluation_bdry_imageB.m
 correspond_pixelsB.m
 
 
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 
 
@@ -80,7 +77,7 @@ bench_blur_bsds500.m
 
 
 
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 NOT:
 	main_ImageSeg.m, calc_weights.m, compute_Laplacian.m, compute_Modularity.m, compute_AvgAssociation.m
