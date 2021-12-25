@@ -1,3 +1,5 @@
+# Image Segmentation Codebase
+
 Greetings. Here is an early sample of code from the first of my two Ph.D projects. Most of this project was done in Matlab with some bash scripting to interface with a computer cluster using sbatch. It is not the cleanest repo because this is a project that I worked on without collaboration and it was an exploratory project that developed organically. The second project I worked on in my Ph.D thesis in the Cell_Assembly_Codebase - done later, in Python, and with collaboration - is a better example of code. The purpose of this repo is to provide a sample of my coding capabilities - not a working project that can be picked up by others without significant effort. 
 
 The paper associated with this work, entitled "A Model for Image Segmentation in Retina" can be found here: https://arxiv.org/abs/2005.02567
@@ -27,9 +29,11 @@ The goal of this project was to build a computational model as a proof of concep
 
 	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-(1).	**write_sbatch_loop_pb_png_4benchmark.m**
+(1).	**write_sbatch_loop_pb_png_4benchmark.m** - similar to other functions beginning write_sbatch_loop_<etc>, this function allows us to perform grid search across hyperparameters in parallel across multiple cluster machines by writing sbatch text files and a corresponding run file to call those files in order, submitting them to the queue. This code will compute probabilistic boundary maps from phase or eigenvectors.
 
-(2). 	**construct_pb_png_4benchmark.m**
+(2). 	**construct_pb_png_4benchmark.m** - this function will create probabilistic boundary (pb) maps from final phase maps or reshaped eigenvectors. That pb map can then be used in the benchmarking pipeline.
+
+
 
 	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
