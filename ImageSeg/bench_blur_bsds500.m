@@ -1,4 +1,4 @@
-function bench_blur_bsds500(sz,sig)
+ function bench_blur_bsds500(sz,sig)
 
 % This function will loop through all the *.png files in the
 % blur_sz#_sig#/pb_png directory and will run them through the benchmark

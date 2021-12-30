@@ -104,11 +104,8 @@ end
 %% CODE TO DO SOMETHING...
 if(0)
     edit extractPatch
-    
     edit addBoundaryToGT
-    
     edit tilePatches
-    
     edit power_method
     edit Project_1s
 end
